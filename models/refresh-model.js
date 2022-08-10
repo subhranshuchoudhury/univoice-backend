@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const refreshSchema = new Schema(
     {
-        token: { type: String, required: true },
+        token: { type: String, required: false },
         userId: { type: Schema.Types.ObjectId, ref: 'User' },
     },
     {
