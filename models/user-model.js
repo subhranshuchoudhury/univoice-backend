@@ -11,12 +11,12 @@ const userSchema = new Schema(
             required: false,
             get: (avatar) => {
                 if (avatar) {
-                    return `${process.env.BASE_URL}/storage/1660115420318-829142435.png`;
+                    return `https://univoicedb.herokuapp.com/storage/1660115420318-829142435.png`;
                 }
-                return `${process.env.BASE_URL}/storage/1660115420318-829142435.png`;
+                return `https://univoicedb.herokuapp.com/storage/1660115420318-829142435.png`;
             },
         },
-        activated: { type: Boolean, required: false, default: true }, // def - false
+        activated: { type: Boolean, required: false, default: false },
     },
     {
         timestamps: true,
