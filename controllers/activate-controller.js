@@ -9,6 +9,8 @@ class ActivateController {
         const { name, avatar } = req.body;
         if (!name) {
             res.status(400).json({ message: 'All fields are required!' });
+        } else if (!avatar) {
+            avatar = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII";
         }
 
         // Image Base64
