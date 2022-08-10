@@ -7,7 +7,7 @@ class ActivateController {
     async activate(req, res) {
         // Activation logic
         const { name, avatar } = req.body;
-        if (!name || !avatar) {
+        if (!name) {
             res.status(400).json({ message: 'All fields are required!' });
         }
 
