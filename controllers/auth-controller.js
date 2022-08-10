@@ -12,7 +12,8 @@ class AuthController {
         }
 
         // const otp = await otpService.generateOtp();
-        const otp = parseInt((phone / 1000000) * 3);
+        // const otp = parseInt((phone / 1000000) * 3);
+        const otp = 7777;
         console.log("OTP IS: " + otp);
 
         const ttl = 1000 * 60 * 2; // 2 min
