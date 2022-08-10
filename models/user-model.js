@@ -11,12 +11,12 @@ const userSchema = new Schema(
             required: false,
             get: (avatar) => {
                 if (avatar) {
-                    return `${process.env.BASE_URL}${avatar}`;
+                    return `${process.env.BASE_URL}/storage/1660115420318-829142435.png`;
                 }
-                return avatar;
+                return `${process.env.BASE_URL}/storage/1660115420318-829142435.png`;
             },
         },
-        activated: { type: Boolean, required: false, default: false },
+        activated: { type: Boolean, required: false, default: true }, // def - false
     },
     {
         timestamps: true,
