@@ -21,7 +21,7 @@ const corsOption = {
     credentials: true,
     origin: process.env.FRONT_END_URL,
 };
-app.use((req, res, next) => { res.header({ "Access-Control-Allow-Origin": "https://subhranshuchoudhury.github.io" }); next(); });
+app.use(cors(corsOption));
 app.use('/storage', express.static('storage'));
 
 const PORT = process.env.PORT || 5000;
