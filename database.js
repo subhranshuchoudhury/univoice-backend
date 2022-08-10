@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+require("dotenv").config();
 function DbConnect() {
-    console.log('coming here...', "mongodb://Chintu:chintu1234@cluster1.i5s6j2d.mongodb.net/codershouse");
-    const DB_URL = "mongodb+srv://Chintu:chintu1234@cluster1.i5s6j2d.mongodb.net/?retryWrites=true&w=majority";
+    console.log('coming here...', "Welcome BOSS");
+    const DB_URL = process.env.DB_URL;
     // Database connection
     mongoose.connect(DB_URL, {
         useNewUrlParser: true,
