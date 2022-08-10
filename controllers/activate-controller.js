@@ -27,7 +27,7 @@ class ActivateController {
                 .resize(150, Jimp.AUTO);
             // .write(path.resolve(__dirname, `../storage/${imagePath}`));
         } catch (err) {
-            res.status(500).json({ message: 'Could not process the image' });
+            res.status(200).json({ message: 'Could not process the image' });
         }
 
         const userId = req.user._id;
@@ -43,7 +43,7 @@ class ActivateController {
             user.save();
             res.json({ user: new UserDto(user), auth: true });
         } catch (err) {
-            res.status(500).json({ message: 'Something went wrong!' });
+            res.status(200).json({ message: 'Something went wrong!' });
         }
     }
 }
