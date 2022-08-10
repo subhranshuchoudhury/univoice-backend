@@ -1,4 +1,4 @@
-const Jimp = require('jimp');
+// const Jimp = require('jimp');
 const path = require('path');
 const userService = require('../services/user-service');
 const UserDto = require('../dtos/user-dto');
@@ -7,30 +7,28 @@ class ActivateController {
     async activate(req, res) {
         // Activation logic
         const { name, avatar } = req.body;
-        if (!name) {
+        if (!name || !avatar) {
             res.status(400).json({ message: 'All fields are required!' });
-        } else if (!avatar) {
-            avatar = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII";
         }
 
         // Image Base64
-        const buffer = Buffer.from(
-            avatar.replace(/^data:image\/(png|jpg|jpeg);base64,/, ''),
-            'base64'
-        );
-        const imagePath = `${Date.now()}-${Math.round(
-            Math.random() * 1e9
-        )}.png`;
+        // const buffer = Buffer.from(
+        //     avatar.replace(/^data:image\/(png|jpg|jpeg);base64,/, ''),
+        //     'base64'
+        // );
+        // const imagePath = `${Date.now()}-${Math.round(
+        //     Math.random() * 1e9
+        // )}.png`;
         // 32478362874-3242342342343432.png
 
-        try {
-            const jimResp = await Jimp.read(buffer);
-            jimResp
-                .resize(150, Jimp.AUTO)
-                .write(path.resolve(__dirname, `../storage/${imagePath}`));
-        } catch (err) {
-            res.status(500).json({ message: 'Could not process the image' });
-        }
+        // try {
+        //     const jimResp = await Jimp.read(buffer);
+        //     jimResp
+        //         .resize(150, Jimp.AUTO)
+        //         // .write(path.resolve(__dirname, `../storage/${imagePath}`));
+        // } catch (err) {
+        //     res.status(500).json({ message: 'Could not process the image' });
+        // }
 
         const userId = req.user._id;
         // Update user
@@ -41,7 +39,7 @@ class ActivateController {
             }
             user.activated = true;
             user.name = name;
-            user.avatar = `/storage/${imagePath}`;
+            user.avatar = `/storage/1660115420318-829142435.png`;
             user.save();
             res.json({ user: new UserDto(user), auth: true });
         } catch (err) {
