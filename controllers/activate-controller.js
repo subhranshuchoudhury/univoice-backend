@@ -24,10 +24,10 @@ class ActivateController {
         try {
             const jimResp = await Jimp.read(buffer);
             jimResp
-                .resize(150, Jimp.AUTO);
-            // .write(path.resolve(__dirname, `../storage/${imagePath}`));
+                .resize(150, Jimp.AUTO)
+                .write(path.resolve(__dirname, `../storage/${imagePath}`));
         } catch (err) {
-            res.status(200).json({ message: 'Could not process the image' });
+            res.status(500).json({ message: 'Could not process the image' });
         }
 
         const userId = req.user._id;
@@ -39,11 +39,11 @@ class ActivateController {
             }
             user.activated = true;
             user.name = name;
-            user.avatar = `/storage/1660115420318-829142435.png`;
+            user.avatar = `/storage/${imagePath}`;
             user.save();
             res.json({ user: new UserDto(user), auth: true });
         } catch (err) {
-            res.status(200).json({ message: 'Something went wrong!' });
+            res.status(500).json({ message: 'Something went wrong!' });
         }
     }
 }
