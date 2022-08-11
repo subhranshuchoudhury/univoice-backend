@@ -25,7 +25,7 @@ class ActivateController {
             const jimResp = await Jimp.read(buffer);
             jimResp
                 .resize(150, Jimp.AUTO)
-                .write(path.resolve(__dirname, `../storage/${imagePath}`));
+            // .write(path.resolve(__dirname, `../storage/${imagePath}`));
         } catch (err) {
             res.status(500).json({ message: 'Could not process the image' });
         }
@@ -39,7 +39,7 @@ class ActivateController {
             }
             user.activated = true;
             user.name = name;
-            user.avatar = `/storage/${imagePath}`;
+            user.avatar = `/storage/1660061257527-474272897.png`;
             user.save();
             res.json({ user: new UserDto(user), auth: true });
         } catch (err) {
