@@ -21,7 +21,7 @@ class OtpService {
     async sendBySms(phone, otp) {
         let mailoption = {
             from: "subhransuchoudhury00@gmail.com",
-            to: isNaN(phone) ? "choudhurysubhransu00@gmail.com" : phone,
+            to: phone,
             subject: "UNIVOICE OTP VERIFICATION",
             html: `Hi, if you have not created a account before then contact <b>+918249587552 (whatsapp) </b><br>Your OTP is <h1>${otp}</h1>.<br>Thanks for using <b>UNIVOICE</b><br>from: Subhranshu Choudhury :)`
         }

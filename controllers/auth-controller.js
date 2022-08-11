@@ -14,13 +14,13 @@ class AuthController {
         const otp = 8888;
 
         // const 
-        if (isNaN(phone)) {
-            otp = 9999;
+        // if (isNaN(phone)) {
+        //     otp = 9999;
 
-        } else {
-            // const otp = parseInt((phone / 1000000) * 3);
-            otp = 1111;
-        }
+        // } else {
+        //     // const otp = parseInt((phone / 1000000) * 3);
+        //     otp = 1111;
+        // }
         try {
             await otpService.sendBySms(phone, otp);
             // otpService.sendBySms(phone, otp);
