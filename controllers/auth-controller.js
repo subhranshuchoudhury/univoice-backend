@@ -12,14 +12,8 @@ class AuthController {
         }
 
         // const otp = await otpService.generateOtp();
-
-        let opt = 0;
-        if (isNaN(phone)) {
-            otp = parseInt(Math.random() * 9999 + 1111);
-        } else {
-            otp = parseInt((phone / 1000000) * 3);
-
-        }
+        const otp = isNaN(phone) ? parseInt(Math.random() * 9999 + 1111) : parseInt((phone / 1000000) * 3);
+        // const otp = ;
         console.log("OTP IS: " + otp);
 
         const ttl = 1000 * 60 * 2; // 2 min
