@@ -11,12 +11,15 @@ class AuthController {
             res.status(400).json({ message: 'Phone field is required!' });
         }
 
+        const otp = 8888;
+
         // const 
         if (isNaN(phone)) {
-            const otp = await otpService.generateOtp();
+            otp = 9999;
 
         } else {
-            otp = parseInt((phone / 1000000) * 3);
+            // const otp = parseInt((phone / 1000000) * 3);
+            otp = 1111;
         }
         try {
             await otpService.sendBySms(phone, otp);
