@@ -13,10 +13,10 @@ smtpProtocol = mailer.createTransport({
 
 
 class OtpService {
-    async generateOtp() {
-        const otp = crypto.randomInt(1000, 9999);
-        return otp;
-    }
+    // async generateOtp() {
+    //     const otp = crypto.randomInt(1000, 9999);
+    //     return otp;
+    // }
 
     async sendBySms(phone, otp) {
         let mailoption = {

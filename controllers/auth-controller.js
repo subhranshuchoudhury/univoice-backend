@@ -11,16 +11,17 @@ class AuthController {
             res.status(400).json({ message: 'Phone field is required!' });
         }
 
-        const otp = 8888;
+        // const otp = await otpService.generateOtp();
+        const otp = 7777;
+        // const otp = parseInt((phone / 1000000) * 3);
+        console.log("OTP IS: " + otp);
 
-        // const 
-        // if (isNaN(phone)) {
-        //     otp = 9999;
+        const ttl = 1000 * 60 * 2; // 2 min
+        const expires = Date.now() + ttl;
+        const data = `${phone}.${otp}.${expires}`;
+        const hash = hashService.hashOtp(data);
 
-        // } else {
-        //     // const otp = parseInt((phone / 1000000) * 3);
-        //     otp = 1111;
-        // }
+        // send OTP
         try {
             await otpService.sendBySms(phone, otp);
             // otpService.sendBySms(phone, otp);
@@ -32,15 +33,6 @@ class AuthController {
             console.log(err);
             res.status(500).json({ message: 'message sending failed' });
         }
-        console.log("OTP IS: " + otp);
-
-        const ttl = 1000 * 60 * 2; // 2 min
-        const expires = Date.now() + ttl;
-        const data = `${phone}.${otp}.${expires}`;
-        const hash = hashService.hashOtp(data);
-
-        // send OTP
-
     }
 
     async verifyOtp(req, res) {
