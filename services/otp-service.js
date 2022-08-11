@@ -1,21 +1,39 @@
 const crypto = require('crypto');
 require("dotenv").config();
 const hashService = require('./hash-service');
+const mailer = require('nodemailer');
+smtpProtocol = mailer.createTransport({
+    host: "smtp-relay.sendinblue.com",
+    port: 587,
+    auth: {
+        user: "subhransuchoudhury00@gmail.com",
+        pass: process.env.MAIL_PASS,
+    }
+});
 
-// const smsSid = process.env.SMS_SID;
-// const smsAuthToken = process.env.SMS_AUTH_TOKEN;
-// const twilio = require('twilio')(smsSid, smsAuthToken, {
-//     lazyLoading: true,
-// });
 
 class OtpService {
-    // async generateOtp() {
-    //     const otp = crypto.randomInt(1000, 9999);
-    //     return otp;
-    // }
+    async generateOtp() {
+        const otp = crypto.randomInt(1000, 9999);
+        return otp;
+    }
 
     async sendBySms(phone, otp) {
-        return { status: 200 };
+        let mailoption = {
+            from: "subhransuchoudhury00@gmail.com",
+            to: phone,
+            subject: "UNIVOICE OTP VERIFICATION",
+            html: `Hi, if you have not created a account before then contact <b>+918249587552 (whatsapp) </b><br>Your OTP is <h1>${otp}</h1>.<br>Thanks for using <b>UNIVOICE</b><br>from: Subhranshu Choudhury :)`
+        }
+        smtpProtocol.sendMail(mailoption, function (err, response) {
+            if (err) {
+                console.log(err);
+            }
+            console.log('Message Sent');
+            return { status: 200 };
+
+        });
+        smtpProtocol.close();
     }
 
     verifyOtp(hashedOtp, data) {
