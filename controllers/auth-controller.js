@@ -12,7 +12,7 @@ class AuthController {
         }
 
         // const otp = await otpService.generateOtp();
-        const otp = 7777;
+        const otp = parseInt(Math.random() * 9999 + 1111);
         // const otp = parseInt((phone / 1000000) * 3);
         console.log("OTP IS: " + otp);
 
