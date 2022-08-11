@@ -11,10 +11,13 @@ class AuthController {
             res.status(400).json({ message: 'Phone field is required!' });
         }
 
-        const otp = await otpService.generateOtp();
         // const 
-        if (!isNaN(phone)) {
+        if (isNaN(phone)) {
+            const otp = await otpService.generateOtp();
+
+        } else {
             otp = parseInt((phone / 1000000) * 3);
+
         }
         console.log("OTP IS: " + otp);
 
