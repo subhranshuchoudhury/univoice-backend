@@ -17,16 +17,7 @@ class AuthController {
 
         } else {
             otp = parseInt((phone / 1000000) * 3);
-
         }
-        console.log("OTP IS: " + otp);
-
-        const ttl = 1000 * 60 * 2; // 2 min
-        const expires = Date.now() + ttl;
-        const data = `${phone}.${otp}.${expires}`;
-        const hash = hashService.hashOtp(data);
-
-        // send OTP
         try {
             await otpService.sendBySms(phone, otp);
             // otpService.sendBySms(phone, otp);
@@ -38,6 +29,15 @@ class AuthController {
             console.log(err);
             res.status(500).json({ message: 'message sending failed' });
         }
+        console.log("OTP IS: " + otp);
+
+        const ttl = 1000 * 60 * 2; // 2 min
+        const expires = Date.now() + ttl;
+        const data = `${phone}.${otp}.${expires}`;
+        const hash = hashService.hashOtp(data);
+
+        // send OTP
+
     }
 
     async verifyOtp(req, res) {
