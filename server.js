@@ -22,6 +22,13 @@ const corsOption = {
     origin: process.env.FRONT_END_URL,
 };
 app.use(cors(corsOption));
+app.use(function (req, res, next) {
+    //Enabling CORS
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x - client - key, x - client - token, x - client - secret, Authorization");
+    next();
+});
 app.use('/storage', express.static('storage'));
 
 const PORT = process.env.PORT || 5000;
